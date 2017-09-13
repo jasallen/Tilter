@@ -155,8 +155,8 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\..\..\..\..\..\git\NETConf2017\UWPIoTMPU6050\AccelerationAndGyro\AccelerationAndGyro.csproj">
-      <Project>{e0ab7ba9-d6ee-4048-9227-046240a53ffd}</Project>
+    <ProjectReference Include="..\AccelerationAndGyro\AccelerationAndGyro.csproj">
+      <Project>{f29db37e-5c38-4c91-b13d-9a79fdf4e1e1}</Project>
       <Name>AccelerationAndGyro</Name>
     </ProjectReference>
     <ProjectReference Include="..\Tilter.XF\Tilter.XF.csproj">

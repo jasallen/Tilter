@@ -18,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\..\..\..\..\git\NETConf2017\UWPIoTMPU6050\AccelerationAndGyro\AccelerationAndGyro.csproj" />
+    <ProjectReference Include="..\AccelerationAndGyro\AccelerationAndGyro.csproj" />
   </ItemGroup>
 
   <ItemGroup>
