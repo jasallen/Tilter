@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AccelerationAndGyro;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -39,6 +40,8 @@ namespace Tilter.UWP
         /// <param name="e">Details about the launch request and process.</param>
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
+            Xamarin.Forms.DependencyService.Register<IAccelerationAndGyroSensor, MPU6050Sensor>();
+            //Xamarin.Forms.DependencyService.Register<IAccelerationAndGyroSensor, FakeAccelerometerAndGyro>();
 
 #if DEBUG
             if (System.Diagnostics.Debugger.IsAttached)

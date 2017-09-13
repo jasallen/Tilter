@@ -99,7 +99,10 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Sensors\MPU6050.cs" />
+    <Compile Include="Sensors\MPU6050Sensor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sensors\SensorValue.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -152,9 +155,13 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Tilter\Tilter.csproj">
-      <Project>{7592aacf-062c-481c-8e87-00d12c2f74a1}</Project>
-      <Name>Tilter</Name>
+    <ProjectReference Include="..\..\..\..\..\..\..\..\..\git\NETConf2017\UWPIoTMPU6050\AccelerationAndGyro\AccelerationAndGyro.csproj">
+      <Project>{e0ab7ba9-d6ee-4048-9227-046240a53ffd}</Project>
+      <Name>AccelerationAndGyro</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Tilter.XF\Tilter.XF.csproj">
+      <Project>{1fe2ce51-0618-41a8-8450-462de59eb712}</Project>
+      <Name>Tilter.XF</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">

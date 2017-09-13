@@ -1,5 +1,7 @@
-﻿using System;
+﻿using AccelerationAndGyro;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,7 +13,7 @@ namespace Tilter
     {
         RotationAngles angles;
 
-        IAccelerationAndGyroSensor sensor { get; } = new MPU6050Sensor();
+        IAccelerationAndGyroSensor sensor { get; } = DependencyService.Get<IAccelerationAndGyroSensor>();
 
         ObservableCollection<string> output = new ObservableCollection<string>();
 
@@ -28,20 +30,18 @@ namespace Tilter
 
             StartAccelAndGyroSensors();
         }
-
-        DispatcherTimer dispatcherTimer;
-
-
+        
         async Task StartAccelAndGyroSensors()
         {
             //todo deal with RotationAngles instance being used on multiple threads
             sensor.NewSensorReading += Sensor_NewSensorReading;
 
-            //optional update screen at fixed interval, updates from sensor can be too frequent
-            dispatcherTimer = new DispatcherTimer();
-            dispatcherTimer.Tick += UpdateRotationAnglesToScreen; ;
-            dispatcherTimer.Interval = new TimeSpan(0, 0, 0, 0, 30);
-            dispatcherTimer.Start();
+            //update screen at fixed interval, updates from sensor can be too frequent
+            //for cool future way to handle these situations check out async streams coming in c#8
+            Device.StartTimer(
+                new TimeSpan(0, 0, 0, 0, 30),
+                UpdateRotationAnglesToScreen);
+            
         }
 
         private void Sensor_NewSensorReading(object sender, AccelerationAndGyroViewModel e)
@@ -49,13 +49,13 @@ namespace Tilter
             angles.UpdateFromGravity(e);
         }
 
-        private void UpdateRotationAnglesToScreen(object sender, object e)
+        private bool UpdateRotationAnglesToScreen()
         {
-            PlaneTransform.TranslateX = (((angles.Yaw * 2000 / 360) + 1000) % 2000) - 1000;
-            PlaneProjection.RotationX = angles.Pitch;
-            PlaneProjection.RotationZ = angles.Roll;
+            Plane.TranslationX = (((angles.Yaw * 2000 / 360) + 1000) % 2000) - 1000;
+            Plane.RotationX = angles.Pitch;
+            Plane.Rotation = angles.Roll;
 
-            //Debug.WriteLine($"roll:{angles.Roll};");
+            return true;
         }
 
         private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
