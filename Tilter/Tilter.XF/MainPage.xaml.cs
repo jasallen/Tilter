@@ -17,6 +17,8 @@ namespace Tilter
 
         ObservableCollection<string> output = new ObservableCollection<string>();
 
+        HandleAccelAndGyroPushToAzure azurePusher;
+
         public MainPage()
         {
             InitializeComponent();
@@ -31,8 +33,10 @@ namespace Tilter
             StartAccelAndGyroSensors();
         }
         
-        async Task StartAccelAndGyroSensors()
+        void StartAccelAndGyroSensors()
         {
+            azurePusher = new HandleAccelAndGyroPushToAzure("","","");
+
             //todo deal with RotationAngles instance being used on multiple threads
             sensor.NewSensorReading += Sensor_NewSensorReading;
 
@@ -42,11 +46,13 @@ namespace Tilter
                 new TimeSpan(0, 0, 0, 0, 30),
                 UpdateRotationAnglesToScreen);
             
+
         }
 
-        private void Sensor_NewSensorReading(object sender, AccelerationAndGyroViewModel e)
+        private void Sensor_NewSensorReading(object sender, AccelerationAndGyroModel e)
         {
             angles.UpdateFromGravity(e);
+            
         }
 
         private bool UpdateRotationAnglesToScreen()

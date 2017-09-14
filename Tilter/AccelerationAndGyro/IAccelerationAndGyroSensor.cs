@@ -6,6 +6,6 @@ namespace AccelerationAndGyro
 {
     public interface IAccelerationAndGyroSensor
     {
-        event EventHandler<AccelerationAndGyroViewModel> NewSensorReading;
+        event EventHandler<AccelerationAndGyroModel> NewSensorReading;
     }
 }

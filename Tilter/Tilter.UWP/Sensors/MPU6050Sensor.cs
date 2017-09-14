@@ -13,7 +13,7 @@ namespace Tilter.UWP
         //static List<AccelerationAndGyroViewModel> sampleDataRecorder = new List<AccelerationAndGyroViewModel>();
         //static DateTime sampleDataRecordStart = DateTime.Now;
 
-        public event EventHandler<AccelerationAndGyroViewModel> NewSensorReading;
+        public event EventHandler<AccelerationAndGyroModel> NewSensorReading;
 
         private MPU6050 MPU6050 { get; } = new MPU6050();
         
@@ -30,7 +30,7 @@ namespace Tilter.UWP
         {
             var mpuV = e.Values.First();
 
-            var vm = new AccelerationAndGyroViewModel()
+            var vm = new AccelerationAndGyroModel()
             {
                 AccelerationX = mpuV.AccelerationX,
                 AccelerationY = mpuV.AccelerationY,

@@ -10,9 +10,9 @@ namespace AccelerationAndGyro
 {
     public class FakeAccelerometerAndGyro : IAccelerationAndGyroSensor
     {
-        public event EventHandler<AccelerationAndGyroViewModel> NewSensorReading;
+        public event EventHandler<AccelerationAndGyroModel> NewSensorReading;
 
-        List<AccelerationAndGyroViewModel> data;
+        List<AccelerationAndGyroModel> data;
 
         int currentReading = 0;
         Timer timer;
@@ -27,7 +27,7 @@ namespace AccelerationAndGyro
             using (var sr = new StreamReader(dataStream))
             using (var jsonTextReader = new JsonTextReader(sr))
             {
-                data = serializer.Deserialize<List<AccelerationAndGyroViewModel>>(jsonTextReader);
+                data = serializer.Deserialize<List<AccelerationAndGyroModel>>(jsonTextReader);
             }
 
             timer = new System.Threading.Timer(raiseEvent, null, TimeSpan.Zero, TimeSpan.FromSeconds(0.01));            

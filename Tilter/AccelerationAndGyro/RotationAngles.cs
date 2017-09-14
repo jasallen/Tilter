@@ -31,9 +31,9 @@ namespace AccelerationAndGyro
             Yaw = yaw;
         }
 
-        public AccelerationAndGyroViewModel AccelAndGyro { get; private set; }
+        public AccelerationAndGyroModel AccelAndGyro { get; private set; }
 
-        public void UpdateFromGravity(AccelerationAndGyroViewModel sensors)
+        public void UpdateFromGravity(AccelerationAndGyroModel sensors)
         {
             AccelAndGyro = sensors;
 
@@ -45,7 +45,7 @@ namespace AccelerationAndGyro
             double gyroX = (sensors.GyroX * sensors.SamplePeriod) - gyroXNoiseCorrect;
             double gyroY = (sensors.GyroY * sensors.SamplePeriod) - gyroYNoiseCorrect;
 
-            //roll happens along the Y axis so the Y axis doesn't change, so we check X and Z changes for roll
+            //roll happens along the Y axis so the Y gravity doesn't change, so we check X and Z changes for roll
             if (!IsSignificantGravity(gravX, gravZ))
             {
                 Roll += -1 * gyroY;

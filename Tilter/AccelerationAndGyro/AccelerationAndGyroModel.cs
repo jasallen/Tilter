@@ -6,7 +6,7 @@ using System.Text;
 namespace AccelerationAndGyro
 {
     
-    public class AccelerationAndGyroViewModel
+    public class AccelerationAndGyroModel
     {
         public float SamplePeriod { get; set; }
 
