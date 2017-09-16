@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Tilter.XF;
 using Xamarin.Forms;
 
 namespace Tilter
@@ -13,11 +14,10 @@ namespace Tilter
     {
         RotationAngles angles;
 
-        IAccelerationAndGyroSensor sensor { get; } = DependencyService.Get<IAccelerationAndGyroSensor>();
+        IAccelerationAndGyroSensor sensor = App.GetGyroSensor();
 
         ObservableCollection<string> output = new ObservableCollection<string>();
-
-        HandleAccelAndGyroPushToAzure azurePusher;
+        
 
         public MainPage()
         {
@@ -35,8 +35,6 @@ namespace Tilter
         
         void StartAccelAndGyroSensors()
         {
-            azurePusher = new HandleAccelAndGyroPushToAzure("","","");
-
             //todo deal with RotationAngles instance being used on multiple threads
             sensor.NewSensorReading += Sensor_NewSensorReading;
 

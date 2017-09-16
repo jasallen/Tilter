@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Tilter.UWP.Sensors;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
@@ -32,7 +33,7 @@ namespace Tilter.UWP
             this.InitializeComponent();
             this.Suspending += OnSuspending;
         }
-
+        
         /// <summary>
         /// Invoked when the application is launched normally by the end user.  Other entry points
         /// will be used such as when the application is launched to open a specific file.
@@ -40,9 +41,7 @@ namespace Tilter.UWP
         /// <param name="e">Details about the launch request and process.</param>
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
-            //Xamarin.Forms.DependencyService.Register<IAccelerationAndGyroSensor, MPU6050Sensor>();
-            Xamarin.Forms.DependencyService.Register<IAccelerationAndGyroSensor, FakeAccelerometerAndGyro>();
-
+            Tilter.App.GetGyroSensor = SensorConfig.GetVirtualSensor;
 #if DEBUG
             if (System.Diagnostics.Debugger.IsAttached)
             {
@@ -81,7 +80,9 @@ namespace Tilter.UWP
             }
             // Ensure the current window is active
             Window.Current.Activate();
+
         }
+
 
         /// <summary>
         /// Invoked when Navigation to a certain page fails

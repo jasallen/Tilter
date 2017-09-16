@@ -102,6 +102,7 @@
     <Compile Include="Sensors\MPU6050.cs" />
     <Compile Include="Sensors\MPU6050Sensor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sensors\SensorConfig.cs" />
     <Compile Include="Sensors\SensorValue.cs" />
   </ItemGroup>
   <ItemGroup>
