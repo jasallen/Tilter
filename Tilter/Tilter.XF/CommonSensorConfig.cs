@@ -14,10 +14,14 @@ namespace Tilter.XF
             IAccelerationAndGyroSensor sensor = new VirtualAccelerationAndGyroSensorFromAzure(AzureSignalRConfig.EndPoint, AzureSignalRConfig.HubName, AzureIoTHubConfig.DeviceId);
 
             var config = new CommonSensorConfig(); //the lifetime of the instance is tied to the sensor
+            
+            return sensor;
+        }
 
-            sensor.NewSensorReading += config.PublishToHub;
-            sensor.NewSensorReading += config.PublishToSignalR;
-
+        public static IAccelerationAndGyroSensor GetFakeSensor()
+        {
+            IAccelerationAndGyroSensor sensor = new FakeAccelerometerAndGyro();
+            
             return sensor;
         }
 
