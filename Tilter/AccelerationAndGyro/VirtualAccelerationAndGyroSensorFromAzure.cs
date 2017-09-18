@@ -13,10 +13,10 @@ namespace AccelerationAndGyro
     {
         public event EventHandler<AccelerationAndGyroModel> NewSensorReading;
 
-        private readonly string azureSignalREndpoint;
-        private readonly string device;
-        private HubConnection connection;
-        private IHubProxy proxy;
+        readonly string azureSignalREndpoint;
+        readonly string device;
+        HubConnection connection;
+        IHubProxy proxy;
 
         public VirtualAccelerationAndGyroSensorFromAzure(string AzureSignalREndpoint, string HubName, string Device)
         {

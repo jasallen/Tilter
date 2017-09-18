@@ -41,7 +41,7 @@ namespace Tilter.UWP
         /// <param name="e">Details about the launch request and process.</param>
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
-            Tilter.App.GetGyroSensor = SensorConfig.GetVirtualSensor;
+            Tilter.App.GetGyroSensor = SensorConfig.GetFakeSensor;
 #if DEBUG
             if (System.Diagnostics.Debugger.IsAttached)
             {
