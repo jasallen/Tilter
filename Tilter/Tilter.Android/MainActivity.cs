@@ -6,6 +6,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using Tilter.XF;
 
 namespace Tilter.Droid
 {
@@ -18,6 +19,8 @@ namespace Tilter.Droid
             ToolbarResource = Resource.Layout.Toolbar;
 
             base.OnCreate(bundle);
+            
+            Tilter.App.GetGyroSensor = CommonSensorConfig.GetFakeSensor;
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
             LoadApplication(new App());

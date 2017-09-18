@@ -119,6 +119,16 @@
     <AndroidResource Include="Resources\layout\Toolbar.axml" />
     <AndroidResource Include="Resources\values\styles.xml" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AccelerationAndGyro\AccelerationAndGyro.csproj">
+      <Project>{f29db37e-5c38-4c91-b13d-9a79fdf4e1e1}</Project>
+      <Name>AccelerationAndGyro</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Tilter.XF\Tilter.XF.csproj">
+      <Project>{1fe2ce51-0618-41a8-8450-462de59eb712}</Project>
+      <Name>Tilter.XF</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\..\packages\Xamarin.Android.Support.Vector.Drawable.23.3.0\build\Xamarin.Android.Support.Vector.Drawable.targets" Condition="Exists('..\..\packages\Xamarin.Android.Support.Vector.Drawable.23.3.0\build\Xamarin.Android.Support.Vector.Drawable.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
